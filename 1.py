@@ -20,7 +20,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="addminbtn">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -46,7 +46,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="zerobtn">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -75,7 +75,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="combtn">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -98,7 +98,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="eqbtn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -121,7 +121,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="onebtn">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -144,7 +144,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="twobtn">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -167,7 +167,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="threebtn">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -190,7 +190,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="plusbtn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -213,7 +213,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="fourbtn">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -236,7 +236,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="fivebtn">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -259,7 +259,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="sixbtn">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -282,7 +282,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="minusbtn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -305,7 +305,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="sevenbtn">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -328,7 +328,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_14">
+   <widget class="QPushButton" name="eightbtn">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -351,7 +351,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_15">
+   <widget class="QPushButton" name="ninebtn">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -374,7 +374,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_16">
+   <widget class="QPushButton" name="multbtn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -397,7 +397,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_17">
+   <widget class="QPushButton" name="clearbtn">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -420,7 +420,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="staplesbtn">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -443,7 +443,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_19">
+   <widget class="QPushButton" name="probtn">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -466,7 +466,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_20">
+   <widget class="QPushButton" name="divbtn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -489,7 +489,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="converbtn">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -512,7 +512,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="otherbtn">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -535,7 +535,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="result">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -545,14 +545,17 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLabel" name="vvod">
     <property name="geometry">
      <rect>
-      <x>182</x>
-      <y>10</y>
-      <width>131</width>
-      <height>51</height>
+      <x>200</x>
+      <y>20</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -580,17 +583,119 @@ class Calculator(QMainWindow):
         f = io.StringIO(template)
         uic.loadUi(f, self)  # Загружаем дизайн
 
+        self.sequence = ''
+        self.answer = 0
+
+        self.clearbtn.clicked.connect(self.clear)
+        self.divbtn.clicked.connect(self.div)
+        self.multbtn.clicked.connect(self.mult)
+        self.minusbtn.clicked.connect(self.min)
+        self.plusbtn.clicked.connect(self.sub)
+        self.eqbtn.clicked.connect(self.equal)
+        self.combtn.clicked.connect(self.sub)
+        self.addminbtn.clicked.connect(self.sub)
+
+        self.onebtn.clicked.connect(self.one)
+        self.twobtn.clicked.connect(self.two)
+        self.threebtn.clicked.connect(self.three)
+        self.fourbtn.clicked.connect(self.four)
+        self.fivebtn.clicked.connect(self.five)
+        self.sixbtn.clicked.connect(self.six)
+        self.sevenbtn.clicked.connect(self.seven)
+        self.eightbtn.clicked.connect(self.eight)
+        self.ninebtn.clicked.connect(self.nine)
+        self.zerobtn.clicked.connect(self.zero)
+
+    def one(self):
+        self.sequence = '%s1' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def two(self):
+        self.sequence = '%s2' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def three(self):
+        self.sequence = '%s3' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def four(self):
+        self.sequence = '%s4' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def five(self):
+        self.sequence = '%s5' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def six(self):
+        self.sequence = '%s6' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def seven(self):
+        self.sequence = '%s7' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def eight(self):
+        self.sequence = '%s8' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def nine(self):
+        self.sequence = '%s9' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def zero(self):
+        self.sequence = '%s0' % (self.sequence)
+        print(self.sequence)
+
+        self.vvod.setText('%s' % self.sequence)
+
+    def clear(self):
+        self.sequence = ''
+        self.vvod.setText('')
+        self.result.display('0')
+
     def sub(self):
-        pass
+        self.sequence = '%s+' % (self.sequence)
+        print(self.sequence)
+        self.vvod.setText('%s' % self.sequence)
 
     def min(self):
-        pass
+        self.sequence = '%s-' % (self.sequence)
+        print(self.sequence)
+        self.vvod.setText('%s' % self.sequence)
 
     def div(self):
-        pass
+        self.sequence = '%s/' % (self.sequence)
+        print(self.sequence)
+        self.vvod.setText('%s' % self.sequence)
 
     def mult(self):
-        pass
+        self.sequence = '%s*' % (self.sequence)
+        print(self.sequence)
+        self.vvod.setText('%s' % self.sequence)
+
+    def equal(self):
+        self.answer = eval(self.sequence)
+        self.sequence = self.answer
+        print(self.answer)
+        self.result.display('%s' % (self.answer))
 
 
 if __name__ == '__main__':
