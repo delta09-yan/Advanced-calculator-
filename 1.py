@@ -538,10 +538,10 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLCDNumber" name="result">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>110</x>
       <y>80</y>
-      <width>101</width>
-      <height>51</height>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
    </widget>
@@ -584,7 +584,10 @@ class Calculator(QMainWindow):
         uic.loadUi(f, self)  # Загружаем дизайн
 
         self.sequence = ''
+        self.sequence_2 = ''
+        self.sequence_3 = ''
         self.answer = 0
+        self.count = 0
 
         self.clearbtn.clicked.connect(self.clear)
         self.divbtn.clicked.connect(self.div)
@@ -594,6 +597,8 @@ class Calculator(QMainWindow):
         self.eqbtn.clicked.connect(self.equal)
         self.combtn.clicked.connect(self.sub)
         self.addminbtn.clicked.connect(self.sub)
+        self.probtn.clicked.connect(self.procent)
+        self.staplesbtn.clicked.connect(self.staples)
 
         self.onebtn.clicked.connect(self.one)
         self.twobtn.clicked.connect(self.two)
@@ -607,61 +612,82 @@ class Calculator(QMainWindow):
         self.zerobtn.clicked.connect(self.zero)
 
     def one(self):
+        self.sequence_2 = ''
         self.sequence = '%s1' % (self.sequence)
+        self.sequence_2 = '%s1' % (self.sequence_2)
+
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def two(self):
+        self.sequence_2 = ''
         self.sequence = '%s2' % (self.sequence)
+        self.sequence_2 = '%s2' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def three(self):
+        self.sequence_2 = ''
         self.sequence = '%s3' % (self.sequence)
+        self.sequence_2 = '%s3' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def four(self):
+        self.sequence_2 = ''
         self.sequence = '%s4' % (self.sequence)
+        self.sequence_2 = '%s4' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def five(self):
+        self.sequence_2 = ''
         self.sequence = '%s5' % (self.sequence)
+        self.sequence_2 = '%s5' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def six(self):
+        self.sequence_2 = ''
         self.sequence = '%s6' % (self.sequence)
+        self.sequence_2 = '%s6' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def seven(self):
+        self.sequence_2 = ''
         self.sequence = '%s7' % (self.sequence)
+        self.sequence_2 = '%s7' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def eight(self):
+        self.sequence_2 = ''
         self.sequence = '%s8' % (self.sequence)
+        self.sequence_2 = '%s8' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def nine(self):
+        self.sequence_2 = ''
         self.sequence = '%s9' % (self.sequence)
+        self.sequence_2 = '%s9' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
     def zero(self):
+        self.sequence_2 = ''
         self.sequence = '%s0' % (self.sequence)
+        self.sequence_2 = '%s0' % (self.sequence_2)
         print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
@@ -692,10 +718,210 @@ class Calculator(QMainWindow):
         self.vvod.setText('%s' % self.sequence)
 
     def equal(self):
-        self.answer = eval(self.sequence)
-        self.sequence = self.answer
-        print(self.answer)
-        self.result.display('%s' % (self.answer))
+        if '+' in self.sequence:
+            self.answer = round(eval(self.sequence), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+        elif '-' in self.sequence:
+            print(self.sequence)
+            self.answer = round(eval(self.sequence), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+        elif '*' in self.sequence:
+            self.answer = round(eval(self.sequence), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+        elif '/' in self.sequence:
+            self.answer = round(eval(self.sequence), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+        elif len(self.sequence) != 1:
+            self.answer = round(eval(self.sequence), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+        else:
+            self.answer = round(eval(self.sequence_2), 5)
+            self.sequence = self.answer
+            self.sequence_2 = self.answer
+            print(self.answer)
+            self.result.display('%s' % (self.answer))
+
+    def procent(self):
+
+        if '*' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+            print(self.sequence_2)
+            leng = len(self.sequence) - len(self.sequence_2)
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) / 100)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '/' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            print(self.sequence_2)
+            leng = len(self.sequence) - len(self.sequence_2)
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) / 100)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '-' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+            print(self.sequence_2)
+            leng = len(self.sequence) - len(self.sequence_2) - 1
+
+            self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
+            print(self.sequence_2)
+            self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '+' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+            print(self.sequence_2)
+            leng = len(self.sequence) - len(self.sequence_2) - 1
+
+            self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
+            print(self.sequence_2)
+            self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        else:
+            if len(self.sequence) != 1:
+                self.sequence = str(int(self.sequence) / 100)
+                self.vvod.setText('%s' % (self.sequence))
+            else:
+                self.sequence_2 = str(int(self.sequence_2) / 100)
+                self.sequence = self.sequence_2
+                self.vvod.setText('%s' % (self.sequence_2))
+    def staples(self):
+        if self.count != 0:
+            print(self.count)
+            self.count -=1
+            self.sequence = '%s(' % (self.sequence)
+            self.vvod.setText('%s' % self.sequence)
+        elif '*(' in self.sequence[-2:]:
+            self.sequence = '%s(' % (self.sequence)
+            self.count += 1
+            self.vvod.setText('%s' % self.sequence)
+        elif '(' not in self.sequence:
+            self.sequence = '(%s' % (self.sequence)
+            self.vvod.setText('%s' % self.sequence)
+        elif '(' in self.sequence:
+            print(self.sequence)
+            if '1)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '2)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '3)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '4)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '5)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '6)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '7)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '8)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '9)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif '0)' in self.sequence[-2:]:
+                self.sequence = '%s*(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+
+
+
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '1':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '2':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '3':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '4':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '5':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '6':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '7':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '8':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '9':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-2] == '(' and self.sequence[-1] == '0':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+
+
+            elif self.sequence[-1] == '1':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '2':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '3':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '4':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '5':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '6':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '7':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '8':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '9':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '0':
+                self.sequence = '%s)' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+            elif self.sequence[-1] == '(':
+                self.sequence = '%s(' % (self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+
+            else:
+                self.sequence = '(%s' % (self.sequence)
+                self.count += 1
+                self.vvod.setText('%s' % self.sequence)
+        elif ')' in self.sequence:
+            self.sequence = '(%s' % (self.sequence)
+            self.vvod.setText('%s' % self.sequence)
+
 
 
 if __name__ == '__main__':
