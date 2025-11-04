@@ -4,7 +4,7 @@ import io
 from PyQt6 import uic  # Импортируем uic
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
-template = '''<?xml version="1.0" encoding="UTF-8"?>
+template = """<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
@@ -420,12 +420,12 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="staplesbtn">
+   <widget class="QPushButton" name="staple_1btn">
     <property name="geometry">
      <rect>
       <x>80</x>
       <y>160</y>
-      <width>81</width>
+      <width>41</width>
       <height>81</height>
      </rect>
     </property>
@@ -434,12 +434,12 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../OneDrive/Изображения/().webp</normaloff>../../OneDrive/Изображения/().webp</iconset>
+      <normaloff>../../OneDrive/Изображения/40-microsoft-tai-le-bold-1024px.png</normaloff>../../OneDrive/Изображения/40-microsoft-tai-le-bold-1024px.png</iconset>
     </property>
     <property name="iconSize">
      <size>
       <width>75</width>
-      <height>75</height>
+      <height>100</height>
      </size>
     </property>
    </widget>
@@ -558,6 +558,29 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="staple_2btn">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>41</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../OneDrive/Изображения/1677568654_bigfoto-name-p-skobka-v-interere-27.png</normaloff>../../OneDrive/Изображения/1677568654_bigfoto-name-p-skobka-v-interere-27.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>75</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -574,7 +597,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
  <resources/>
  <connections/>
 </ui>
-'''
+"""
 
 
 class Calculator(QMainWindow):
@@ -595,10 +618,11 @@ class Calculator(QMainWindow):
         self.minusbtn.clicked.connect(self.min)
         self.plusbtn.clicked.connect(self.sub)
         self.eqbtn.clicked.connect(self.equal)
-        self.combtn.clicked.connect(self.sub)
-        self.addminbtn.clicked.connect(self.sub)
+        self.combtn.clicked.connect(self.com)
         self.probtn.clicked.connect(self.procent)
-        self.staplesbtn.clicked.connect(self.staples)
+        self.staple_1btn.clicked.connect(self.staples)
+        self.staple_2btn.clicked.connect(self.staples)
+        self.addminbtn.clicked.connect(self.addmin)
 
         self.onebtn.clicked.connect(self.one)
         self.twobtn.clicked.connect(self.two)
@@ -757,7 +781,6 @@ class Calculator(QMainWindow):
             self.result.display('%s' % (self.answer))
 
     def procent(self):
-
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
             print(self.sequence_2)
@@ -800,10 +823,13 @@ class Calculator(QMainWindow):
                 self.sequence_2 = str(int(self.sequence_2) / 100)
                 self.sequence = self.sequence_2
                 self.vvod.setText('%s' % (self.sequence_2))
+
     def staples(self):
-        if self.count != 0:
+        if self.sequence == '(':
+            pass
+        elif self.count != 0:
             print(self.count)
-            self.count -=1
+            self.count -= 1
             self.sequence = '%s(' % (self.sequence)
             self.vvod.setText('%s' % self.sequence)
         elif '*(' in self.sequence[-2:]:
@@ -922,6 +948,46 @@ class Calculator(QMainWindow):
             self.sequence = '(%s' % (self.sequence)
             self.vvod.setText('%s' % self.sequence)
 
+    def addmin(self):
+        print('press minus')
+
+    def com(self):
+        if '.' not in self.sequence:
+            self.sequence = '%s.' % (self.sequence)
+            print(self.sequence)
+            self.vvod.setText('%s' % self.sequence)
+        elif '+' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+            if '.' not in self.sequence_2:
+                self.sequence_2 = '%s.' % (self.sequence_2)
+                print(self.sequence_2)
+                leng = len(self.sequence) - len(self.sequence_2)
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+        elif '-' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+            if '.' not in self.sequence_2:
+                self.sequence_2 = '%s.' % (self.sequence_2)
+                print(self.sequence_2)
+                leng = len(self.sequence) - len(self.sequence_2)
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+        elif '/' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            if '.' not in self.sequence_2:
+                self.sequence_2 = '%s.' % (self.sequence_2)
+                print(self.sequence_2)
+                leng = len(self.sequence) - len(self.sequence_2)
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+        elif '*' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+            if '.' not in self.sequence_2:
+                self.sequence_2 = '%s.' % (self.sequence_2)
+                print(self.sequence_2)
+                leng = len(self.sequence) - len(self.sequence_2)
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
 
 
 if __name__ == '__main__':
