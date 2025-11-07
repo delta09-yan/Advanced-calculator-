@@ -2,24 +2,32 @@ import sys
 import io
 
 from PyQt6 import uic  # Импортируем uic
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWidget
 
 template = """<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>328</width>
-    <height>611</height>
+    <width>661</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>321</width>
+     <height>581</height>
+    </rect>
+   </property>
    <widget class="QPushButton" name="addminbtn">
     <property name="geometry">
      <rect>
@@ -489,52 +497,6 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="converbtn">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>110</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/линейка.webp</normaloff>../../OneDrive/Изображения/линейка.webp</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>30</width>
-      <height>30</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="otherbtn">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>110</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/про.webp</normaloff>../../OneDrive/Изображения/про.webp</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>30</width>
-      <height>30</height>
-     </size>
-    </property>
-   </widget>
    <widget class="QLCDNumber" name="result">
     <property name="geometry">
      <rect>
@@ -592,7 +554,191 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>3</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="modbtn">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>160</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>|x|</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="autoRepeatInterval">
+    <number>100</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>320</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>240</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>160</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>240</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_10">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>160</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>320</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>160</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>240</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>320</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>240</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="doplabel">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>80</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Additional options</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
@@ -606,6 +752,8 @@ class Calculator(QMainWindow):
         f = io.StringIO(template)
         uic.loadUi(f, self)  # Загружаем дизайн
 
+        self.w = None
+        self.w_2 = None
         self.sequence = ''
         self.sequence_2 = ''
         self.sequence_3 = ''
@@ -634,6 +782,8 @@ class Calculator(QMainWindow):
         self.eightbtn.clicked.connect(self.eight)
         self.ninebtn.clicked.connect(self.nine)
         self.zerobtn.clicked.connect(self.zero)
+
+        self.modbtn.clicked.connect(self.mod)
 
     def one(self):
         self.sequence_2 = ''
@@ -781,10 +931,11 @@ class Calculator(QMainWindow):
             self.result.display('%s' % (self.answer))
 
     def procent(self):
+        leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
             print(self.sequence_2)
-            leng = len(self.sequence) - len(self.sequence_2)
+
             print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) / 100)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
@@ -792,7 +943,7 @@ class Calculator(QMainWindow):
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
             print(self.sequence_2)
-            leng = len(self.sequence) - len(self.sequence_2)
+
             print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) / 100)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
@@ -800,7 +951,6 @@ class Calculator(QMainWindow):
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
             print(self.sequence_2)
-            leng = len(self.sequence) - len(self.sequence_2) - 1
 
             self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
             print(self.sequence_2)
@@ -809,7 +959,6 @@ class Calculator(QMainWindow):
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
             print(self.sequence_2)
-            leng = len(self.sequence) - len(self.sequence_2) - 1
 
             self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
             print(self.sequence_2)
@@ -988,6 +1137,26 @@ class Calculator(QMainWindow):
                 leng = len(self.sequence) - len(self.sequence_2)
                 self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
                 self.vvod.setText('%s' % self.sequence)
+
+    def mod(self):
+        leng = len(self.sequence) - len(self.sequence_2)
+        try:
+            if '-' in self.sequence[0]:
+                self.sequence = abs(int(self.sequence))
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-'):]
+                self.sequence = self.sequence[:self.sequence.find('-'):]
+                print(self.sequence_2)
+
+                self.sequence_2 = abs(int(self.sequence_2))
+                print(self.sequence_2)
+                print(self.sequence)
+                self.sequence = '%s+%s' % (self.sequence, self.sequence_2)
+                print(self.sequence)
+                self.vvod.setText('%s' % self.sequence)
+        except Exception:
+            self.vvod.setText('ERROR')
 
 
 if __name__ == '__main__':
