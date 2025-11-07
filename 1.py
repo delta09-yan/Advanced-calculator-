@@ -3,6 +3,7 @@ import io
 
 from PyQt6 import uic  # Импортируем uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWidget
+from math import sqrt
 
 template = """<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
@@ -500,9 +501,9 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLCDNumber" name="result">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>10</x>
       <y>80</y>
-      <width>211</width>
+      <width>311</width>
       <height>71</height>
      </rect>
     </property>
@@ -510,10 +511,10 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLabel" name="vvod">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>0</x>
       <y>20</y>
-      <width>111</width>
-      <height>31</height>
+      <width>311</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -591,7 +592,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <number>100</number>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="onedivx">
    <property name="geometry">
     <rect>
      <x>350</x>
@@ -600,11 +601,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>1/x</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_7">
+  <widget class="QPushButton" name="cosbtn">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -613,11 +619,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>cos</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="pibtn">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -626,11 +637,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>50</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>PI</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="secextbtn">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -639,11 +655,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>x²</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_10">
+  <widget class="QPushButton" name="sqrtbtn">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -653,10 +674,20 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../OneDrive/Изображения/sqrt.jpg</normaloff>../../OneDrive/Изображения/sqrt.jpg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>75</width>
+     <height>75</height>
+    </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="eextx">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -665,11 +696,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>e^x</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="ebtn">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -678,11 +714,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>50</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>e</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_8">
+  <widget class="QPushButton" name="sinbtn">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -691,11 +732,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>sin</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_9">
+  <widget class="QPushButton" name="xextybtn">
    <property name="geometry">
     <rect>
      <x>550</x>
@@ -704,11 +750,16 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>x^y</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="tanbtn">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -717,8 +768,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>tan</string>
    </property>
   </widget>
   <widget class="QLabel" name="doplabel">
@@ -739,6 +795,19 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <string>Additional options</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="vvodext">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>420</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
@@ -752,13 +821,13 @@ class Calculator(QMainWindow):
         f = io.StringIO(template)
         uic.loadUi(f, self)  # Загружаем дизайн
 
-        self.w = None
-        self.w_2 = None
         self.sequence = ''
         self.sequence_2 = ''
-        self.sequence_3 = ''
+        self.ext = ''
         self.answer = 0
         self.count = 0
+
+        self.vvodext.textEdited.connect(self.my_slot_function)
 
         self.clearbtn.clicked.connect(self.clear)
         self.divbtn.clicked.connect(self.div)
@@ -784,6 +853,16 @@ class Calculator(QMainWindow):
         self.zerobtn.clicked.connect(self.zero)
 
         self.modbtn.clicked.connect(self.mod)
+        self.sqrtbtn.clicked.connect(self.sqr)
+        self.pibtn.clicked.connect(self.p)
+        self.ebtn.clicked.connect(self.e)
+        self.sinbtn.clicked.connect(self.sin)
+        self.cosbtn.clicked.connect(self.cos)
+        self.tanbtn.clicked.connect(self.tan)
+        self.secextbtn.clicked.connect(self.secexf)
+        self.onedivx.clicked.connect(self.onedivxf)
+        self.eextx.clicked.connect(self.eextxf)
+        self.xextybtn.clicked.connect(self.xextyf)
 
     def one(self):
         self.sequence_2 = ''
@@ -912,11 +991,15 @@ class Calculator(QMainWindow):
             print(self.answer)
             self.result.display('%s' % (self.answer))
         elif '/' in self.sequence:
-            self.answer = round(eval(self.sequence), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-            print(self.answer)
-            self.result.display('%s' % (self.answer))
+            if '0' not in self.sequence[-1]:
+                self.answer = eval(self.sequence)
+                self.sequence = self.answer
+                self.sequence_2 = self.answer
+                print(self.answer)
+                self.result.display('%s' % (self.answer))
+            else:
+                self.result.display('ERROR')
+                self.sequence = ''
         elif len(self.sequence) != 1:
             self.answer = round(eval(self.sequence), 5)
             self.sequence = self.answer
@@ -941,13 +1024,17 @@ class Calculator(QMainWindow):
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
+            if '0' not in self.sequence[-1]:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
-            self.sequence_2 = str(int(self.sequence_2) / 100)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                print(self.sequence[:len(self.sequence_2)])
+                self.sequence_2 = str(int(self.sequence_2) / 100)
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.vvod.setText('ERROR')
+                self.sequence = ''
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
             print(self.sequence_2)
@@ -1157,6 +1244,168 @@ class Calculator(QMainWindow):
                 self.vvod.setText('%s' % self.sequence)
         except Exception:
             self.vvod.setText('ERROR')
+
+    def sqr(self):
+        leng = len(self.sequence) - len(self.sequence_2)
+
+        if '-' in self.sequence:
+
+            self.sequence_2 = self.sequence[self.sequence.find('-'):]
+            print(-int(self.sequence_2))
+            if int(self.sequence_2) < 0:
+                self.vvod.setText('ERROR')
+
+        elif '+' in self.sequence:
+
+            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+            self.sequence_2 = sqrt(int(self.sequence_2))
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+
+        elif '/' in self.sequence:
+
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            self.sequence_2 = sqrt(int(self.sequence_2))
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '*' in self.sequence:
+
+            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+            self.sequence_2 = sqrt(int(self.sequence_2))
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        else:
+            self.sequence = sqrt(int(self.sequence))
+            self.vvod.setText('%s' % self.sequence)
+
+    def p(self):
+        if self.sequence[:12] == '2.7182818285':
+            self.sequence = '%s*3.1415926536' % (self.sequence)
+        else:
+            self.sequence = '%s3.1415926536' % (self.sequence)
+        self.sequence_2 = '%s3.1415926536' % (self.sequence_2)
+        self.vvod.setText('%s' % self.sequence)
+
+    def e(self):
+        if self.sequence[:12] == '3.1415926536':
+            self.sequence = '%s*2.7182818285' % (self.sequence)
+        else:
+            self.sequence = '%s2.7182818285' % (self.sequence)
+        self.sequence_2 = '%s2.7182818285' % (self.sequence_2)
+        self.vvod.setText('%s' % self.sequence)
+
+    def sin(self):
+        pass
+
+    def cos(self):
+        pass
+
+    def tan(self):
+        pass
+
+    def secexf(self):
+        leng = len(self.sequence) - len(self.sequence_2)
+        if '*' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+            print(self.sequence_2)
+
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) ** 2)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '/' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            print(self.sequence_2)
+
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) ** 2)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '-' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('-'):]
+            print(self.sequence_2)
+
+            self.sequence_2 = str(int(self.sequence_2) ** 2)
+            print(self.sequence_2)
+            self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '+' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+            print(self.sequence_2)
+
+            self.sequence_2 = str(int(self.sequence_2) ** 2)
+            print(self.sequence_2)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+
+    def onedivxf(self):
+        self.sequence = '%s1/' % (self.sequence)
+        self.sequence_2 = '%s1' % (self.sequence_2)
+        self.vvod.setText('%s' % self.sequence)
+
+    def eextxf(self):
+        leng = len(self.sequence) - len(self.sequence_2)
+        if '*' in self.sequence[-1]:
+
+            self.sequence_2 = str(2.7182818285 ** int(self.ext))
+            self.sequence = '%s*%s' % (self.sequence, self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '/' in self.sequence[-1]:
+
+            self.sequence_2 = str(2.7182818285 ** int(self.ext))
+            self.sequence = '%s/%s' % (self.sequence, self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+
+        elif '-' in self.sequence[-1]:
+            self.sequence_2 = str(2.7182818285 ** int(self.ext))
+            self.sequence = '%s-%s' % (self.sequence, self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '+' in self.sequence[-1]:
+            self.sequence_2 = str(2.7182818285 ** int(self.ext))
+            self.sequence = '%s+%s' % (self.sequence, self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        else:
+            self.sequence = str(2.7182818285 ** int(self.ext))
+            self.vvod.setText('%s' % self.sequence)
+
+    def xextyf(self):
+        leng = len(self.sequence) - len(self.sequence_2)
+        if '*' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+            print(self.sequence_2)
+
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '/' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            print(self.sequence_2)
+
+            print(self.sequence[:len(self.sequence_2)])
+            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '-' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('-'):]
+            print(self.sequence_2)
+
+            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+            print(self.sequence_2)
+            self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+        elif '+' in self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+            print(self.sequence_2)
+            print(self.vvodtext.text())
+            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+            print(self.sequence_2)
+            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+            self.vvod.setText('%s' % self.sequence)
+
+    def my_slot_function(self, text):
+        self.ext = text
+        print(self.ext)
 
 
 if __name__ == '__main__':
