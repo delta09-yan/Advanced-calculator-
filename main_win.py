@@ -1,8 +1,7 @@
-import sys
 import io
 
 from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from math import sqrt, sin, cos, tan, radians
 from sec_win import UnitConvertion
 
@@ -920,7 +919,6 @@ class Calculator(QMainWindow):
         self.sequence = '%s1' % (self.sequence)
         self.sequence_2 = '%s1' % (self.sequence_2)
 
-
         self.vvod.setText('%s' % self.sequence)
 
     def two(self):
@@ -1000,12 +998,14 @@ class Calculator(QMainWindow):
         self.vvod.setText('%s' % self.sequence)
 
     def div(self):
-        self.sequence = '%s/' % (self.sequence)
-        self.vvod.setText('%s' % self.sequence)
+        if '/' not in self.sequence and self.sequence:
+            self.sequence = '%s/' % (self.sequence)
+            self.vvod.setText('%s' % self.sequence)
 
     def mult(self):
-        self.sequence = '%s*' % (self.sequence)
-        self.vvod.setText('%s' % self.sequence)
+        if '*' not in self.sequence and self.sequence:
+            self.sequence = '%s*' % (self.sequence)
+            self.vvod.setText('%s' % self.sequence)
 
     def equal(self):
         self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
@@ -1051,48 +1051,53 @@ class Calculator(QMainWindow):
             self.result.display('%s' % (self.answer))
 
     def procent(self):
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        print(0)
+        if self.sequence and self.sequence != '-' and self.sequence != '+':
 
-            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) / 100)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                leng = len(self.sequence) - len(self.sequence_2)
 
-            leng = len(self.sequence) - len(self.sequence_2)
-
-            self.sequence_2 = str(int(self.sequence_2) / 100)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-
-            leng = len(self.sequence) - len(self.sequence_2) - 1
-
-            self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
-
-            self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-
-            leng = len(self.sequence) - len(self.sequence_2) - 1
-
-            self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
-
-            self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        else:
-            if len(self.sequence) != 1:
-                self.sequence = str(int(self.sequence) / 100)
-                self.vvod.setText('%s' % (self.sequence))
-            else:
                 self.sequence_2 = str(int(self.sequence_2) / 100)
-                self.sequence = self.sequence_2
-                self.vvod.setText('%s' % (self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+
+                leng = len(self.sequence) - len(self.sequence_2)
+
+                self.sequence_2 = str(int(self.sequence_2) / 100)
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+
+                leng = len(self.sequence) - len(self.sequence_2) - 1
+
+                self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
+
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+
+                leng = len(self.sequence) - len(self.sequence_2) - 1
+
+                self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
+
+                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                if len(self.sequence) != 1:
+                    self.sequence = str(int(self.sequence) / 100)
+                    self.vvod.setText('%s' % (self.sequence))
+                else:
+                    self.sequence_2 = str(int(self.sequence_2) / 100)
+                    self.sequence = self.sequence_2
+                    self.vvod.setText('%s' % (self.sequence_2))
+        else:
+            self.vvod.setText('ERROR')
 
     def staples(self):
         if self.sequence == '(':
@@ -1279,35 +1284,37 @@ class Calculator(QMainWindow):
 
     def sqr(self):
         leng = len(self.sequence) - len(self.sequence_2)
+        if self.sequence:
+            if '-' in self.sequence:
 
-        if '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-'):]
+                if int(self.sequence_2) < 0:
+                    self.vvod.setText('ERROR')
 
-            self.sequence_2 = self.sequence[self.sequence.find('-'):]
-            if int(self.sequence_2) < 0:
-                self.vvod.setText('ERROR')
+            elif '+' in self.sequence:
 
-        elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = sqrt(int(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
 
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            self.sequence_2 = sqrt(int(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
 
-        elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = sqrt(int(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '*' in self.sequence:
 
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            self.sequence_2 = sqrt(int(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '*' in self.sequence:
-
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            self.sequence_2 = sqrt(int(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+                self.sequence_2 = sqrt(int(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = sqrt(int(self.sequence))
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = sqrt(int(self.sequence))
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def p(self):
         if self.sequence[:12] == '2.7182818285':
@@ -1326,139 +1333,151 @@ class Calculator(QMainWindow):
         self.vvod.setText('%s' % self.sequence)
 
     def sin(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        if self.sequence:
+            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(sin(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(sin(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(sin(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(sin(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(sin(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(sin(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(sin(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(sin(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = radians(int(self.sequence))
+                self.sequence = str(sin(self.sequence))
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = radians(int(self.sequence))
-            self.sequence = str(sin(self.sequence))
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def cos(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        if self.sequence:
+            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(cos(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(cos(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(cos(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(cos(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(cos(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(cos(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(cos(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(cos(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = radians(int(self.sequence))
+                self.sequence = str(cos(self.sequence))
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = radians(int(self.sequence))
-            self.sequence = str(cos(self.sequence))
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def tan(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        if self.sequence:
+            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(tan(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(tan(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(tan(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(tan(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(tan(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(tan(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
 
-            self.sequence_2 = radians(int(self.sequence_2))
-            self.sequence_2 = str(tan(self.sequence_2))
-            self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = radians(int(self.sequence_2))
+                self.sequence_2 = str(tan(self.sequence_2))
+                self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = radians(int(self.sequence))
+                self.sequence = str(tan(self.sequence))
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = radians(int(self.sequence))
-            self.sequence = str(tan(self.sequence))
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def secexf(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        if self.sequence:
+            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) ** 2)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = str(int(self.sequence_2) ** 2)
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) ** 2)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-'):]
+                self.sequence_2 = str(int(self.sequence_2) ** 2)
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-'):]
 
-            self.sequence_2 = str(int(self.sequence_2) ** 2)
-            self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = str(int(self.sequence_2) ** 2)
+                self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) ** 2)
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = str(int(self.sequence_2) ** 2)
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = str(int(self.sequence) ** 2)
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = str(int(self.sequence) ** 2)
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def onedivxf(self):
         self.sequence = '%s1/' % (self.sequence)
@@ -1466,55 +1485,64 @@ class Calculator(QMainWindow):
         self.vvod.setText('%s' % self.sequence)
 
     def eextxf(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if self.sequence == '':
-            self.sequence = '%s' % (str(2.7182818285 ** int(self.ext)))
-            self.vvod.setText('%s' % self.sequence)
-        elif '*' in self.sequence[-1]:
-            self.sequence_2 = str(2.7182818285 ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence, self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence[-1]:
-            self.sequence_2 = str(2.7182818285 ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence, self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence[-1]:
-            self.sequence_2 = str(2.7182818285 ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence, self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence[-1]:
-            self.sequence_2 = str(2.7182818285 ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence, self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+        print(self.ext.isalpha())
+        if self.ext == '':
+            self.vvod.setText('ERROR')
+        elif not self.ext.isalpha():
+            leng = len(self.sequence) - len(self.sequence_2)
+            if self.sequence == '':
+                self.sequence = '%s' % (str(2.7182818285 ** int(self.ext)))
+                self.vvod.setText('%s' % self.sequence)
+            elif '*' in self.sequence[-1]:
+                self.sequence_2 = str(2.7182818285 ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence, self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence[-1]:
+                self.sequence_2 = str(2.7182818285 ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence, self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence[-1]:
+                self.sequence_2 = str(2.7182818285 ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence, self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence[-1]:
+                self.sequence_2 = str(2.7182818285 ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence, self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+        else:
+            self.vvod.setText('ERROR')
 
     def xextyf(self):
-        leng = len(self.sequence) - len(self.sequence_2)
-        if '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+        if self.sequence and not self.ext.isalpha():
+            leng = len(self.sequence) - len(self.sequence_2)
+            if '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
 
-            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-'):]
+                self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-'):]
 
-            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
-            self.vvod.setText('%s' % self.sequence)
+                self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+                self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
+                self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
+                self.vvod.setText('%s' % self.sequence)
+            else:
+                self.sequence = str(int(self.sequence) ** int(self.ext))
+                self.vvod.setText('%s' % self.sequence)
         else:
-            self.sequence = str(int(self.sequence) ** int(self.ext))
-            self.vvod.setText('%s' % self.sequence)
+            self.vvod.setText('ERROR')
 
     def my_slot_function(self, text):
         self.ext = text
