@@ -1,9 +1,10 @@
 import sys
 import io
 
-from PyQt6 import uic  # Импортируем uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWidget
+from PyQt6 import uic
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from math import sqrt, sin, cos, tan, radians
+from sec_win import UnitConvertion
 
 template = """<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
@@ -14,7 +15,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <x>0</x>
     <y>0</y>
     <width>661</width>
-    <height>564</height>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,12 +39,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/+-.webp</normaloff>../../OneDrive/Изображения/+-.webp</iconset>
+    <property name="text">
+     <string>+/-</string>
     </property>
     <property name="iconSize">
      <size>
@@ -64,12 +66,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/0.webp</normaloff>../../OneDrive/Изображения/0.webp</iconset>
+    <property name="text">
+     <string>0</string>
     </property>
     <property name="iconSize">
      <size>
@@ -93,12 +96,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/,.webp</normaloff>../../OneDrive/Изображения/,.webp</iconset>
+    <property name="text">
+     <string>.</string>
     </property>
     <property name="iconSize">
      <size>
@@ -116,12 +120,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/=.png</normaloff>../../OneDrive/Изображения/=.png</iconset>
+    <property name="text">
+     <string>=</string>
     </property>
     <property name="iconSize">
      <size>
@@ -139,12 +144,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/Un1.svg.png</normaloff>../../OneDrive/Изображения/Un1.svg.png</iconset>
+    <property name="text">
+     <string>1</string>
     </property>
     <property name="iconSize">
      <size>
@@ -162,12 +168,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/2.jpg</normaloff>../../OneDrive/Изображения/2.jpg</iconset>
+    <property name="text">
+     <string>2</string>
     </property>
     <property name="iconSize">
      <size>
@@ -185,12 +192,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/3.jpg</normaloff>../../OneDrive/Изображения/3.jpg</iconset>
+    <property name="text">
+     <string>3</string>
     </property>
     <property name="iconSize">
      <size>
@@ -208,12 +216,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/+.webp</normaloff>../../OneDrive/Изображения/+.webp</iconset>
+    <property name="text">
+     <string>+</string>
     </property>
     <property name="iconSize">
      <size>
@@ -231,12 +240,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/4.webp</normaloff>../../OneDrive/Изображения/4.webp</iconset>
+    <property name="text">
+     <string>4</string>
     </property>
     <property name="iconSize">
      <size>
@@ -254,12 +264,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/5.webp</normaloff>../../OneDrive/Изображения/5.webp</iconset>
+    <property name="text">
+     <string>5</string>
     </property>
     <property name="iconSize">
      <size>
@@ -277,12 +288,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/6.webp</normaloff>../../OneDrive/Изображения/6.webp</iconset>
+    <property name="text">
+     <string>6</string>
     </property>
     <property name="iconSize">
      <size>
@@ -300,12 +312,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>70</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/-.png</normaloff>../../OneDrive/Изображения/-.png</iconset>
+    <property name="text">
+     <string>-</string>
     </property>
     <property name="iconSize">
      <size>
@@ -323,12 +336,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/7.webp</normaloff>../../OneDrive/Изображения/7.webp</iconset>
+    <property name="text">
+     <string>7</string>
     </property>
     <property name="iconSize">
      <size>
@@ -346,12 +360,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/8.png</normaloff>../../OneDrive/Изображения/8.png</iconset>
+    <property name="text">
+     <string>8</string>
     </property>
     <property name="iconSize">
      <size>
@@ -369,12 +384,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/9.webp</normaloff>../../OneDrive/Изображения/9.webp</iconset>
+    <property name="text">
+     <string>9</string>
     </property>
     <property name="iconSize">
      <size>
@@ -392,12 +408,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/um.jpg</normaloff>../../OneDrive/Изображения/um.jpg</iconset>
+    <property name="text">
+     <string>*</string>
     </property>
     <property name="iconSize">
      <size>
@@ -415,40 +432,18 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/c.png</normaloff>../../OneDrive/Изображения/c.png</iconset>
+    <property name="text">
+     <string>C</string>
     </property>
     <property name="iconSize">
      <size>
       <width>75</width>
       <height>75</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="staple_1btn">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>160</y>
-      <width>41</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/40-microsoft-tai-le-bold-1024px.png</normaloff>../../OneDrive/Изображения/40-microsoft-tai-le-bold-1024px.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>75</width>
-      <height>100</height>
      </size>
     </property>
    </widget>
@@ -461,12 +456,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/%.webp</normaloff>../../OneDrive/Изображения/%.webp</iconset>
+    <property name="text">
+     <string>%</string>
     </property>
     <property name="iconSize">
      <size>
@@ -484,12 +480,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
       <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/del.jpeg</normaloff>../../OneDrive/Изображения/del.jpeg</iconset>
+    <property name="text">
+     <string>/</string>
     </property>
     <property name="iconSize">
      <size>
@@ -521,27 +518,22 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="staple_2btn">
+   <widget class="QPushButton" name="staplebtn">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>80</x>
       <y>160</y>
-      <width>41</width>
+      <width>81</width>
       <height>81</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>50</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../OneDrive/Изображения/1677568654_bigfoto-name-p-skobka-v-interere-27.png</normaloff>../../OneDrive/Изображения/1677568654_bigfoto-name-p-skobka-v-interere-27.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>50</width>
-      <height>75</height>
-     </size>
+     <string>()</string>
     </property>
    </widget>
   </widget>
@@ -673,12 +665,13 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
      <height>81</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
+   <property name="font">
+    <font>
+     <pointsize>50</pointsize>
+    </font>
    </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>../../OneDrive/Изображения/sqrt.jpg</normaloff>../../OneDrive/Изображения/sqrt.jpg</iconset>
+   <property name="text">
+    <string>√</string>
    </property>
    <property name="iconSize">
     <size>
@@ -780,15 +773,15 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
   <widget class="QLabel" name="doplabel">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>410</x>
      <y>80</y>
-     <width>141</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="text">
@@ -808,12 +801,65 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="converbtn">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>490</y>
+     <width>161</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Push to do convert</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>450</y>
+     <width>111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Converter</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="qbtn">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>0</y>
+     <width>75</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>QUIT</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
 </ui>
 """
-
 
 class Calculator(QMainWindow):
     def __init__(self):
@@ -826,6 +872,7 @@ class Calculator(QMainWindow):
         self.ext = ''
         self.answer = 0
         self.count = 0
+        self.w = None
 
         self.vvodext.textEdited.connect(self.my_slot_function)
 
@@ -837,8 +884,7 @@ class Calculator(QMainWindow):
         self.eqbtn.clicked.connect(self.equal)
         self.combtn.clicked.connect(self.com)
         self.probtn.clicked.connect(self.procent)
-        self.staple_1btn.clicked.connect(self.staples)
-        self.staple_2btn.clicked.connect(self.staples)
+        self.staplebtn.clicked.connect(self.staples)
         self.addminbtn.clicked.connect(self.addmin)
 
         self.onebtn.clicked.connect(self.one)
@@ -863,6 +909,10 @@ class Calculator(QMainWindow):
         self.onedivx.clicked.connect(self.onedivxf)
         self.eextx.clicked.connect(self.eextxf)
         self.xextybtn.clicked.connect(self.xextyf)
+
+        self.converbtn.clicked.connect(self.show_new_window)
+
+        self.qbtn.clicked.connect(self.show_question_message)
 
     def one(self):
         self.sequence_2 = ''
@@ -1189,42 +1239,43 @@ class Calculator(QMainWindow):
         print('press minus')
 
     def com(self):
-        if '.' not in self.sequence:
-            self.sequence = '%s.' % (self.sequence)
-            print(self.sequence)
-            self.vvod.setText('%s' % self.sequence)
-        elif '+' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            if '.' not in self.sequence_2:
-                self.sequence_2 = '%s.' % (self.sequence_2)
-                print(self.sequence_2)
-                leng = len(self.sequence) - len(self.sequence_2)
-                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+        if self.sequence:
+            if '.' not in self.sequence:
+                self.sequence = '%s.' % (self.sequence)
+                print(self.sequence)
                 self.vvod.setText('%s' % self.sequence)
-        elif '-' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-            if '.' not in self.sequence_2:
-                self.sequence_2 = '%s.' % (self.sequence_2)
-                print(self.sequence_2)
-                leng = len(self.sequence) - len(self.sequence_2)
-                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
-                self.vvod.setText('%s' % self.sequence)
-        elif '/' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            if '.' not in self.sequence_2:
-                self.sequence_2 = '%s.' % (self.sequence_2)
-                print(self.sequence_2)
-                leng = len(self.sequence) - len(self.sequence_2)
-                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
-                self.vvod.setText('%s' % self.sequence)
-        elif '*' in self.sequence:
-            self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            if '.' not in self.sequence_2:
-                self.sequence_2 = '%s.' % (self.sequence_2)
-                print(self.sequence_2)
-                leng = len(self.sequence) - len(self.sequence_2)
-                self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
-                self.vvod.setText('%s' % self.sequence)
+            elif '+' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
+                if '.' not in self.sequence_2:
+                    self.sequence_2 = '%s.' % (self.sequence_2)
+                    print(self.sequence_2)
+                    leng = len(self.sequence) - len(self.sequence_2)
+                    self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                    self.vvod.setText('%s' % self.sequence)
+            elif '-' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
+                if '.' not in self.sequence_2:
+                    self.sequence_2 = '%s.' % (self.sequence_2)
+                    print(self.sequence_2)
+                    leng = len(self.sequence) - len(self.sequence_2)
+                    self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                    self.vvod.setText('%s' % self.sequence)
+            elif '/' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+                if '.' not in self.sequence_2:
+                    self.sequence_2 = '%s.' % (self.sequence_2)
+                    print(self.sequence_2)
+                    leng = len(self.sequence) - len(self.sequence_2)
+                    self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                    self.vvod.setText('%s' % self.sequence)
+            elif '*' in self.sequence:
+                self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
+                if '.' not in self.sequence_2:
+                    self.sequence_2 = '%s.' % (self.sequence_2)
+                    print(self.sequence_2)
+                    leng = len(self.sequence) - len(self.sequence_2)
+                    self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
+                    self.vvod.setText('%s' % self.sequence)
 
     def mod(self):
         leng = len(self.sequence) - len(self.sequence_2)
@@ -1532,10 +1583,30 @@ class Calculator(QMainWindow):
         self.ext = text
         print(self.ext)
 
+    def show_new_window(self, checked):
+        if self.w is None:
+            self.w = UnitConvertion()
+        self.w.show()
+
+    def show_question_message(self):
+        button = QMessageBox.question(
+            self,
+            "Confirmation",
+            "Are you sure you want to quit?",
+            buttons=QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            defaultButton=QMessageBox.StandardButton.No)
+        if button == QMessageBox.StandardButton.Yes:
+            if self.w:
+                self.close()
+                self.w.close()
+            else:
+                self.close()
+        else:
+            print("stay")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Calculator()
     ex.show()
     sys.exit(app.exec())
-
