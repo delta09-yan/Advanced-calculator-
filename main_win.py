@@ -861,6 +861,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
 </ui>
 """
 
+
 class Calculator(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -919,7 +920,6 @@ class Calculator(QMainWindow):
         self.sequence = '%s1' % (self.sequence)
         self.sequence_2 = '%s1' % (self.sequence_2)
 
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -927,7 +927,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s2' % (self.sequence)
         self.sequence_2 = '%s2' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -935,7 +934,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s3' % (self.sequence)
         self.sequence_2 = '%s3' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -943,7 +941,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s4' % (self.sequence)
         self.sequence_2 = '%s4' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -951,7 +948,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s5' % (self.sequence)
         self.sequence_2 = '%s5' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -959,7 +955,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s6' % (self.sequence)
         self.sequence_2 = '%s6' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -967,7 +962,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s7' % (self.sequence)
         self.sequence_2 = '%s7' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -975,7 +969,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s8' % (self.sequence)
         self.sequence_2 = '%s8' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -983,7 +976,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s9' % (self.sequence)
         self.sequence_2 = '%s9' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -991,7 +983,6 @@ class Calculator(QMainWindow):
         self.sequence_2 = ''
         self.sequence = '%s0' % (self.sequence)
         self.sequence_2 = '%s0' % (self.sequence_2)
-        print(self.sequence)
 
         self.vvod.setText('%s' % self.sequence)
 
@@ -1002,45 +993,37 @@ class Calculator(QMainWindow):
 
     def sub(self):
         self.sequence = '%s+' % (self.sequence)
-        print(self.sequence)
         self.vvod.setText('%s' % self.sequence)
 
     def min(self):
         self.sequence = '%s-' % (self.sequence)
-        print(self.sequence)
         self.vvod.setText('%s' % self.sequence)
 
     def div(self):
         self.sequence = '%s/' % (self.sequence)
-        print(self.sequence)
         self.vvod.setText('%s' % self.sequence)
 
     def mult(self):
         self.sequence = '%s*' % (self.sequence)
-        print(self.sequence)
         self.vvod.setText('%s' % self.sequence)
 
     def equal(self):
         self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-        print(self.sequence_2)
         if '+' in self.sequence:
             self.answer = round(eval(self.sequence), 5)
             self.sequence = self.answer
             self.sequence_2 = self.answer
-            print(self.answer)
             self.result.display('%s' % (self.answer))
         elif '-' in self.sequence:
-            print(self.sequence)
             self.answer = round(eval(self.sequence), 5)
             self.sequence = self.answer
             self.sequence_2 = self.answer
-            print(self.answer)
             self.result.display('%s' % (self.answer))
         elif '*' in self.sequence:
             self.answer = round(eval(self.sequence), 5)
             self.sequence = self.answer
             self.sequence_2 = self.answer
-            print(self.answer)
+
             self.result.display('%s' % (self.answer))
         elif '/' in self.sequence:
             print(self.sequence_2)
@@ -1058,48 +1041,48 @@ class Calculator(QMainWindow):
             self.answer = round(eval(self.sequence), 5)
             self.sequence = self.answer
             self.sequence_2 = self.answer
-            print(self.answer)
+
             self.result.display('%s' % (self.answer))
         else:
             self.answer = round(eval(self.sequence_2), 5)
             self.sequence = self.answer
             self.sequence_2 = self.answer
-            print(self.answer)
+
             self.result.display('%s' % (self.answer))
 
     def procent(self):
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
+
             leng = len(self.sequence) - len(self.sequence_2)
-            print(self.sequence[:len(self.sequence_2)])
+
             self.sequence_2 = str(int(self.sequence_2) / 100)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
+
             leng = len(self.sequence) - len(self.sequence_2)
-            print(self.sequence[:len(self.sequence_2)])
+
             self.sequence_2 = str(int(self.sequence_2) / 100)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-            print(self.sequence_2)
+
             leng = len(self.sequence) - len(self.sequence_2) - 1
 
             self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
-            print(self.sequence_2)
+
             self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
+
             leng = len(self.sequence) - len(self.sequence_2) - 1
 
             self.sequence_2 = str(int(self.sequence[:leng]) / 100 * int(self.sequence_2))
-            print(self.sequence_2)
+
             self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         else:
@@ -1115,7 +1098,7 @@ class Calculator(QMainWindow):
         if self.sequence == '(':
             pass
         elif self.count != 0:
-            print(self.count)
+
             self.count -= 1
             self.sequence = '%s(' % (self.sequence)
             self.vvod.setText('%s' % self.sequence)
@@ -1127,7 +1110,7 @@ class Calculator(QMainWindow):
             self.sequence = '(%s' % (self.sequence)
             self.vvod.setText('%s' % self.sequence)
         elif '(' in self.sequence:
-            print(self.sequence)
+
             if '1)' in self.sequence[-2:]:
                 self.sequence = '%s*(' % (self.sequence)
                 self.vvod.setText('%s' % self.sequence)
@@ -1236,19 +1219,19 @@ class Calculator(QMainWindow):
             self.vvod.setText('%s' % self.sequence)
 
     def addmin(self):
-        print('press minus')
+        self.vvod.setText('Press - button')
 
     def com(self):
         if self.sequence:
             if '.' not in self.sequence:
                 self.sequence = '%s.' % (self.sequence)
-                print(self.sequence)
+
                 self.vvod.setText('%s' % self.sequence)
             elif '+' in self.sequence:
                 self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
                 if '.' not in self.sequence_2:
                     self.sequence_2 = '%s.' % (self.sequence_2)
-                    print(self.sequence_2)
+
                     leng = len(self.sequence) - len(self.sequence_2)
                     self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
                     self.vvod.setText('%s' % self.sequence)
@@ -1256,7 +1239,7 @@ class Calculator(QMainWindow):
                 self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
                 if '.' not in self.sequence_2:
                     self.sequence_2 = '%s.' % (self.sequence_2)
-                    print(self.sequence_2)
+
                     leng = len(self.sequence) - len(self.sequence_2)
                     self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
                     self.vvod.setText('%s' % self.sequence)
@@ -1264,7 +1247,7 @@ class Calculator(QMainWindow):
                 self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
                 if '.' not in self.sequence_2:
                     self.sequence_2 = '%s.' % (self.sequence_2)
-                    print(self.sequence_2)
+
                     leng = len(self.sequence) - len(self.sequence_2)
                     self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
                     self.vvod.setText('%s' % self.sequence)
@@ -1272,7 +1255,7 @@ class Calculator(QMainWindow):
                 self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
                 if '.' not in self.sequence_2:
                     self.sequence_2 = '%s.' % (self.sequence_2)
-                    print(self.sequence_2)
+
                     leng = len(self.sequence) - len(self.sequence_2)
                     self.sequence = '%s%s' % (self.sequence[:leng + 1], self.sequence_2)
                     self.vvod.setText('%s' % self.sequence)
@@ -1289,10 +1272,7 @@ class Calculator(QMainWindow):
                 print(self.sequence_2)
 
                 self.sequence_2 = abs(int(self.sequence_2))
-                print(self.sequence_2)
-                print(self.sequence)
                 self.sequence = '%s+%s' % (self.sequence, self.sequence_2)
-                print(self.sequence)
                 self.vvod.setText('%s' % self.sequence)
         except Exception:
             self.vvod.setText('ERROR')
@@ -1303,7 +1283,6 @@ class Calculator(QMainWindow):
         if '-' in self.sequence:
 
             self.sequence_2 = self.sequence[self.sequence.find('-'):]
-            print(-int(self.sequence_2))
             if int(self.sequence_2) < 0:
                 self.vvod.setText('ERROR')
 
@@ -1350,36 +1329,28 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(sin(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(sin(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(sin(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(sin(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
@@ -1393,36 +1364,28 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(cos(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(cos(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(cos(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(cos(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
@@ -1436,36 +1399,28 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(tan(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(tan(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(tan(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = radians(int(self.sequence_2))
             self.sequence_2 = str(tan(self.sequence_2))
             self.sequence = '%s%s' % (self.sequence[:leng - 1], self.sequence_2)
@@ -1479,34 +1434,26 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) ** 2)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) ** 2)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-'):]
-            print(self.sequence_2)
 
             self.sequence_2 = str(int(self.sequence_2) ** 2)
-            print(self.sequence_2)
             self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
 
             self.sequence_2 = str(int(self.sequence_2) ** 2)
-            print(self.sequence_2)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         else:
@@ -1522,7 +1469,6 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if self.sequence == '':
             self.sequence = '%s' % (str(2.7182818285 ** int(self.ext)))
-            print(self.sequence)
             self.vvod.setText('%s' % self.sequence)
         elif '*' in self.sequence[-1]:
             self.sequence_2 = str(2.7182818285 ** int(self.ext))
@@ -1545,34 +1491,25 @@ class Calculator(QMainWindow):
         leng = len(self.sequence) - len(self.sequence_2)
         if '*' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('*') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '/' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-            print(self.sequence_2)
 
-            print(self.sequence[:len(self.sequence_2)])
             self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '-' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('-'):]
-            print(self.sequence_2)
 
             self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            print(self.sequence_2)
             self.sequence = '%s+%s' % (self.sequence[:leng - 1], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         elif '+' in self.sequence:
             self.sequence_2 = self.sequence[self.sequence.find('+') + 1:]
-            print(self.sequence_2)
-            print(self.vvodtext.text())
             self.sequence_2 = str(int(self.sequence_2) ** int(self.ext))
-            print(self.sequence_2)
             self.sequence = '%s%s' % (self.sequence[:leng], self.sequence_2)
             self.vvod.setText('%s' % self.sequence)
         else:
@@ -1581,7 +1518,6 @@ class Calculator(QMainWindow):
 
     def my_slot_function(self, text):
         self.ext = text
-        print(self.ext)
 
     def show_new_window(self, checked):
         if self.w is None:
@@ -1603,10 +1539,3 @@ class Calculator(QMainWindow):
                 self.close()
         else:
             print("stay")
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Calculator()
-    ex.show()
-    sys.exit(app.exec())
