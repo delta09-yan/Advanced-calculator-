@@ -774,7 +774,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <rect>
      <x>410</x>
      <y>80</y>
-     <width>161</width>
+     <width>171</width>
      <height>41</height>
     </rect>
    </property>
@@ -859,7 +859,6 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
  <connections/>
 </ui>
 """
-
 
 class Calculator(QMainWindow):
     def __init__(self):
@@ -1008,47 +1007,61 @@ class Calculator(QMainWindow):
             self.vvod.setText('%s' % self.sequence)
 
     def equal(self):
-        self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
-        if '+' in self.sequence:
-            self.answer = round(eval(self.sequence), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-            self.result.display('%s' % (self.answer))
-        elif '-' in self.sequence:
-            self.answer = round(eval(self.sequence), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-            self.result.display('%s' % (self.answer))
-        elif '*' in self.sequence:
-            self.answer = round(eval(self.sequence), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-
-            self.result.display('%s' % (self.answer))
-        elif '/' in self.sequence:
-            print(self.sequence_2)
-            if '0' not in self.sequence:
-                self.answer = eval(self.sequence)
+        if self.sequence:
+            self.sequence_2 = self.sequence[self.sequence.find('/') + 1:]
+            print('+' in self.sequence and self.sequence[-1] != '+')
+            if self.sequence[-1] == '+':
+                self.result.display('ERROR')
+            elif self.sequence[-1] == '-':
+                self.result.display('ERROR')
+            elif self.sequence[-1] == '/':
+                self.result.display('ERROR')
+            elif self.sequence[-1] == '*':
+                self.result.display('ERROR')
+            elif '+' in self.sequence and self.sequence[-1] != '+':
+                self.answer = round(eval(self.sequence), 5)
                 self.sequence = self.answer
                 self.sequence_2 = self.answer
-                print(self.answer)
                 self.result.display('%s' % (self.answer))
-            elif self.sequence_2 == '0':
-                self.vvod.setText('НЕЛЬЗЯ ДЕЛИТЬ НА 0')
+            elif '-' in self.sequence:
+                self.answer = round(eval(self.sequence), 5)
+                self.sequence = self.answer
+                self.sequence_2 = self.answer
+                self.result.display('%s' % (self.answer))
+            elif '*' in self.sequence:
+                self.answer = round(eval(self.sequence), 5)
+                self.sequence = self.answer
+                self.sequence_2 = self.answer
+
+                self.result.display('%s' % (self.answer))
+            elif '/' in self.sequence:
+                print(self.sequence_2)
+                if '0' not in self.sequence:
+                    self.answer = eval(self.sequence)
+                    self.sequence = self.answer
+                    self.sequence_2 = self.answer
+                    print(self.answer)
+                    self.result.display('%s' % (self.answer))
+                elif self.sequence_2 == '0':
+                    self.vvod.setText('НЕЛЬЗЯ ДЕЛИТЬ НА 0')
+                    self.result.display('ERROR')
+                    self.sequence = ''
+            elif len(self.sequence) != 1:
+                self.answer = round(eval(self.sequence), 5)
+                self.sequence = self.answer
+                self.sequence_2 = self.answer
+
+                self.result.display('%s' % (self.answer))
+            elif self.sequence:
+                self.answer = round(eval(self.sequence_2), 5)
+                self.sequence = self.answer
+                self.sequence_2 = self.answer
+
+                self.result.display('%s' % (self.answer))
+            else:
                 self.result.display('ERROR')
-                self.sequence = ''
-        elif len(self.sequence) != 1:
-            self.answer = round(eval(self.sequence), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-
-            self.result.display('%s' % (self.answer))
         else:
-            self.answer = round(eval(self.sequence_2), 5)
-            self.sequence = self.answer
-            self.sequence_2 = self.answer
-
-            self.result.display('%s' % (self.answer))
+            self.result.display('ERROR')
 
     def procent(self):
         print(0)
